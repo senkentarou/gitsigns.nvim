@@ -1212,7 +1212,9 @@ M.setqflist = async.void(function(target, opts)
     local nr = opts.nr or 0
     vim.fn.setloclist(nr, {}, ' ', qfopts)
     if opts.open then
-      if config.trouble then
+      if config.telescope then
+        require('telescope.builtin').quickfix({ prompt_title='Git workspace hunks' })
+      elseif config.trouble then
         require('trouble').open('loclist')
       else
         vim.cmd.lopen()
@@ -1221,7 +1223,9 @@ M.setqflist = async.void(function(target, opts)
   else
     vim.fn.setqflist({}, ' ', qfopts)
     if opts.open then
-      if config.trouble then
+      if config.telescope then
+        require('telescope.builtin').quickfix({ prompt_title='Git workspace hunks' })
+      elseif config.trouble then
         require('trouble').open('quickfix')
       else
         vim.cmd.copen()

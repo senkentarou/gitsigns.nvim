@@ -740,6 +740,19 @@ M.schema = {
     ]],
   },
 
+  telescope = {
+    type = 'boolean',
+    default = function()
+      local has_telescope = pcall(require, 'telescope')
+      return has_telescope
+    end,
+    default_help = 'true if installed',
+    description = [[
+      When using setqflist() or setloclist(), open Telescope instead of the
+      quickfix/location list window.
+    ]],
+  },
+
   yadm = {
     type = 'table',
     default = { enable = false },
